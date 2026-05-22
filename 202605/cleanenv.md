@@ -156,60 +156,7 @@ source ~/.bashrc
 hash -r
 ```
 
----
 
-## 4. 重新安装（推荐官方方式）
-
-`ruyi` 是 RISC-V 生态的工具，**官方推荐直接下载二进制**，不建议用 pip/pipx（那些可能是旧版或第三方封装）。
-
-### 官方推荐安装方式：
-```bash
-# 创建安装目录
-mkdir -p ~/.local/bin
-
-# 下载最新版 ruyi（以官方 GitHub 最新 release 为准）
-curl -L -o ~/.local/bin/ruyi https://github.com/ruyisdk/ruyi/releases/latest/download/ruyi
-# 或者使用 wget：
-# wget -O ~/.local/bin/ruyi https://github.com/ruyisdk/ruyi/releases/latest/download/ruyi
-
-# 添加执行权限
-chmod +x ~/.local/bin/ruyi
-
-# 确保 ~/.local/bin 在 PATH 中
-echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.bashrc
-source ~/.bashrc
-
-# 验证安装
-ruyi --version
-ruyi update
-```
-
-> **注意**：如果 `ruyi` 官方 release 文件名不同（如带版本号或架构后缀），建议先去 [ruyisdk/ruyi GitHub Releases](https://github.com/ruyisdk/ruyi/releases) 查看最新下载链接。
-
----
-
-## 快速一键排查脚本
-
-如果你想快速确认现状，可以复制粘贴这个脚本：
-
-```bash
-echo "=== 可执行文件位置 ==="
-which -a ruyi 2>/dev/null || echo "未在 PATH 中找到"
-
-echo -e "\n=== pip 安装 ==="
-pip show ruyi 2>/dev/null || pip3 show ruyi 2>/dev/null || echo "pip 未安装"
-
-echo -e "\n=== pipx 安装 ==="
-pipx list 2>/dev/null | grep ruyi || echo "pipx 未安装或无 ruyi"
-
-echo -e "\n=== 数据目录 ==="
-ls -d ~/.ruyi ~/.cache/ruyi ~/.config/ruyi 2>/dev/null || echo "无数据目录"
-
-echo -e "\n=== 环境变量 ==="
-echo "RUYI_HOME=$RUYI_HOME"
-```
-
-执行完这个脚本后，把输出贴出来，我可以帮你判断具体该删哪些。
 
 ## 清除vscode插件和工作空间
 
